@@ -127,13 +127,12 @@ std::string demangle(const std::string& name) {
 }
 
 // [[Rcpp::register]]
-const char* short_file_name(const char* file) {                 // #nocov start
-    std::string f(file);
+std::string short_file_name(std::string f) {                    // #nocov start
     size_t index = f.find("/include/");
     if (index != std::string::npos) {
         f = f.substr(index + 9);
     }
-    return f.c_str();
+    return f;
 }
 
 // [[Rcpp::internal]]

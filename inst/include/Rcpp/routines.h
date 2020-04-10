@@ -43,7 +43,7 @@ namespace Rcpp{
 SEXP          rcpp_get_stack_trace();
 SEXP          rcpp_set_stack_trace(SEXP);
 std::string   demangle(const std::string& name);
-const char*   short_file_name(const char* );
+std::string   short_file_name(std::string);
 int*          get_cache(int n);
 SEXP          stack_trace( const char *file = "", int line = -1);
 SEXP          get_string_elt(SEXP s, R_xlen_t i);
@@ -151,8 +151,8 @@ inline attribute_hidden std::string demangle( const std::string& name){
     return fun(name);
 }
 
-inline attribute_hidden const char* short_file_name(const char* file) {
-    typedef const char* (*Fun)(const char*);
+inline attribute_hidden std::string short_file_name(std::string file) {
+    typedef std::string (*Fun)(std::string);
     static Fun fun = GET_CALLABLE("short_file_name");
     return fun(file);
 }
